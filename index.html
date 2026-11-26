@@ -76,7 +76,7 @@ th[scope=row]{font-weight:600;background:none;font-family:Inter,sans-serif}.scro
 .drawer{visibility:hidden;transition:transform .3s,visibility 0s .3s}.drawer.on{visibility:visible;transition:transform .3s}
 .modal{background:rgba(15,23,42,.55)}.note{color:var(--mut);font-size:14px}a.cta.ghost{display:block;text-align:center;text-decoration:none;background:transparent;color:var(--ink);border:2px solid var(--bd);box-shadow:none;padding:14px;margin-bottom:0}.cta+.cta,a.cta+button.cta{margin-top:10px}
 .thumbs img,.item img{background:#E5E7EB}
-</style></head><body>
+[hidden]{display:none!important}</style></head><body>
 <a class="skip" href="#buy">Skip to buy box</a>
 <div class="tick" id="tick"></div>
 <nav aria-label="Main"><a class="logo" href="#top"><svg width="28" height="28" viewBox="0 0 28 28" aria-hidden="true"><rect width="28" height="28" rx="8" fill="#10B981"/><path d="M7 15h14M7 11h14M7 19h8" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/></svg>SnapSeal™</a>
@@ -231,5 +231,5 @@ if(!C.shopify.domain||ids.includes(null))return showModal("Checkout isn't set up
 if(C.provider==="stripe"&&C.stripe.sessionEndpoint){try{$("co").disabled=true;const r=await fetch(C.stripe.sessionEndpoint,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:cart.lines.map(l=>({sku:l.t+"-"+l.c,qty:l.q})),lanyard:cart.lan})});const d=await r.json();if(!r.ok||!d.url)throw 0;location.href=d.url}catch(e){$("co").disabled=false;showModal("We couldn't start checkout. Please try again or email us.")}return}
 showModal("Online checkout isn't available yet, so no payment has been taken. Your cart is saved. You can email this order to us and we'll reply with next steps.",false)}
 $("co").onclick=checkout;
-if(new URLSearchParams(location.search).get("checkout")==="success"){cart={lan:false,lines:[]};history.replaceState(null,"",location.pathname);rt();render();$("mt").textContent="Order received";$("ms").innerHTML="";$("mn").textContent="Thanks for your order. Stripe will email you a receipt.";$("me").hidden=true;setPanel("md",true)}else{rt();render()}
+if(new URLSearchParams(location.search).get("checkout")==="success"){cart={lan:false,lines:[]};history.replaceState(null,"",location.pathname);rt();render();$("mt").textContent="Order received";$("ms").innerHTML="";$("mn").textContent="Thanks for your order. Your payment was received.";$("me").hidden=true;setPanel("md",true)}else{rt();render()}
 </script></body></html>
